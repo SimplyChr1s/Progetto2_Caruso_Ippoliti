@@ -1,0 +1,9 @@
+# Struttura dati: Nome|Paese|Regione|Qualità Vita|Servizi|Sostenibilità|Costo Alloggio|Mobilità|Settori d'Impiego
+Siviglia|Spagna|Sud Europa|86|84|76|600|Rete di bike sharing e metropolitana|Meccatronica, Manutenzione Mezzi, Turismo e Logistica Alimentare.
+Maribor|Slovenia|Europa Orientale|80|78|85|400|Compatta, ciclabile ed economica|Automazione Industriale, Informatica, Logistica e Green Tech.
+Coimbra|Portogallo|Sud Europa|79|75|72|450|Città collinare con mezzi efficienti|Sviluppo Software, Informatica Gestionale e Biotecnologie.
+Heraklion|Grecia|Sud Europa|75|72|68|420|Autobus urbani capillari|Settore Edile (CAT), Logistica Portuale e Impiantistica.
+Valencia|Spagna|Sud Europa|89|85|82|650|Piste ciclabili e metro moderna|Sviluppo Web, Automazione, Logistica e Chimica Materiali.
+Santiago de Compostela|Spagna|Sud Europa|84|81|80|480|Completamente pedonale nel centro|Geometri (CAT), Restauro Edile e Gestione Turistica.
+La Coruna|Spagna|Sud Europa|83|80|78|500|Autobus urbani e ciclabili|Logistica Navale, Trasporti, Elettronica e Meccanica.
+Perpignan|Francia|Europa Occidentale|77|79|74|550|Rete bus e treni veloci|Meccatronica, Energie Rinnovabili e Logistica Merci.
