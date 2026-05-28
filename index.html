@@ -4,31 +4,199 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Erasmus Hub</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav>
-        <div>
-            <strong>Erasmus Hub</strong>
-            <span>PCTO</span>
-        </div>
-    </nav>
+<nav class="barra-navigazione">
+    <div class="contenitore-principale">
+        <span class="logo-erasmus">Erasmus Hub</span>
+    </div>
+</nav>
 
-    <header>
-        <div>
-            <span>ORIENTAMENTO ALLA MOBILITÀ ESTERA</span>
-            <h1>Esplora le mete Erasmus</h1>
-            <p>Analizza, filtra e confronta i dati relativi delle città.</p>
-            
-            <div>
-                <button id="btnOpenQuiz">Test</button>
+<header class="zona-superiore">
+    <div class="contenitore-zona-superiore">
+        <span class="etichetta-hero">TROVA LA TUA DESTINAZIONE IDEALE</span>
+        <h1>Esplora le Città Erasmus</h1>
+        <p>Confronta le migliori mete europee, valuta i costi di affitto, i servizi e scopri i consigli dei docenti tutor.</p>
+        <div class="contenitore-bottone-quiz">
+            <button id="bottoneApriQuiz" class="bottone-scopri">Scopri la città più adatta a te</button>
+        </div>
+        <div class="contenitore-ricerca">
+            <input type="text" id="inputCerca" placeholder="Cerca città, paese o settore...">
+        </div>
+    </div>
+</header>
+
+<main class="contenitore-principale">
+    <section class="card-confronto">
+        <div class="struttura-barra-confronto">
+            <div class="testo-confronto">
+                <h3>Confronta due città</h3>
+                <p>Seleziona due mete per vedere le statistiche.</p>
             </div>
-            
-            <div>
-                <input type="text" id="searchBar" placeholder="Cerca ">
+            <div class="selettori-confronto">
+                <select id="selezionaCitta1">
+                    <option value="" disabled selected>Scegli la prima città...</option>
+                </select>
+                <span class="etichetta-vs">vs</span>
+                <select id="selezionaCitta2">
+                    <option value="" disabled selected>Scegli la seconda città...</option>
+                </select>
+                <button id="bottoneConfronta" class="bottone-blu-confronta">Confronta</button>
             </div>
         </div>
-    </header>
+    </section>
 
+    <div class="barra-ordinamento">
+        <div class="scelta-ordine">
+            <span>Ordina per:</span>
+            <select id="selezionaOrdine">
+                <option value="qualita_vita">Qualità della vita</option>
+                <option value="servizi">Infrastrutture e servizi</option>
+                <option value="sostenibilita">Sostenibilità ecologica</option>
+                <option value="costo_affitto">Costo dell'alloggio</option>
+            </select>
+        </div>
+    </div>
+
+    <section class="griglia-schede" id="grigliaCitta"></section>
+</main>
+
+<div id="finestraConfronto" class="sfondo-oscurato nascosto">
+    <div class="finestra-contenuto">
+        <div class="finestra-header">
+            <h2>Analisi Comparativa Destinazioni</h2>
+            <button id="chiudiConfronto" class="bottone-chiudi-X">&times;</button>
+        </div>
+        <div class="finestra-corpo">
+            <div class="testata-vs">
+                <div class="blocco-intestazione-citta parte-sinistra">
+                    <h1 id="nomeVsA">Città A</h1>
+                    <p id="paeseVsA">Paese</p>
+                </div>
+                <div class="cerchio-centrale">VS</div>
+                <div class="blocco-intestazione-citta parte-destra">
+                    <h1 id="nomeVsB">Città B</h1>
+                    <p id="paeseVsB">Paese</p>
+                </div>
+            </div>
+            <div class="zona-grafici">
+                <div class="blocco-grafico">
+                    <h3>grafico</h3>
+                    <div class="contenitore-canvas">
+                        <canvas id="disegnoRadar" width="360" height="340"></canvas>
+                    </div>
+                    <div class="radar-legend">
+                        <span><span class="bullet city-a-color"></span> <span id="colonnaCittaA">Città A</span></span>
+                        <span><span class="bullet city-b-color"></span> <span id="colonnaCittaB">Città B</span></span>
+                    </div>
+                </div>
+                <div class="blocco-grafico">
+                    <h3>statistiche</h3>
+                    <div id="contenitoreBarre"></div>
+                </div>
+            </div>
+            <div class="blocco-grafico">
+                <h3>Specifiche Qualitative di Indirizzo</h3>
+                <table class="tabella-dati">
+                    <thead>
+                        <tr><th>Caratteristica</th><th id="tableHeaderCityA">Prima Destinazione</th><th id="tableHeaderCityB">Seconda Destinazione</th></tr>
+                    </thead>
+                    <tbody id="corpoTabellaConfronto"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="finestraDettaglio" class="sfondo-oscurato nascosto">
+    <div class="finestra-contenuto">
+        <div class="finestra-header">
+            <h2>Scheda Tecnica della Destinazione</h2>
+            <button id="chiudiDettaglio" class="bottone-chiudi-X">&times;</button>
+        </div>
+        <div class="finestra-corpo">
+            <div class="immagine-sfondo-scheda" id="dettaglioImmagine">
+                <div class="didascalia-immagine-scheda">
+                    <h1 id="dettaglioNome">Nome Città</h1>
+                    <p id="dettaglioPaeseRegione">Paese — Regione</p>
+                </div>
+            </div>
+            <div class="griglia-punteggi" id="dettaglioPunteggi"></div>
+            <div class="sezione-professori">
+                <h3>Valutazioni Ufficiali dei Docenti Tutor</h3>
+                <div class="contenitore-schede-prof">
+                    <div class="scheda-prof">
+                        <div class="informazioni-prof">
+                            <div class="avatar-utente">SA</div>
+                            <div><strong>Prof. Simone Austeri</strong><span class="ruolo-utente">Docente Accompagnatore</span></div>
+                        </div>
+                        <p class="report-testo" id="reportProfSimone"></p>
+                    </div>
+                    <div class="scheda-prof">
+                        <div class="informazioni-prof">
+                            <div class="avatar-utente avatar-rosa">CS</div>
+                            <div><strong>Prof.ssa Chiara Sabatini</strong><span class="ruolo-utente">Docente Accompagnatore</span></div>
+                        </div>
+                        <p class="report-testo" id="reportProfChiara"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="finestraQuiz" class="sfondo-oscurato nascosto">
+    <div class="finestra-contenuto piccolo">
+        <div class="finestra-header">
+            <h2>Test di Orientamento</h2>
+            <button id="chiudiQuiz" class="bottone-chiudi-X">&times;</button>
+        </div>
+        <div class="finestra-corpo">
+            <form id="moduloQuiz">
+                <div class="domanda">
+                    <p class="domanda-testo">1. Qual è la tua macro-area di studio o interesse?</p>
+                    <div class="opzioni-quiz">
+                        <label><input type="radio" name="corso" value="Informatica" required> Informatica / Sviluppo Software</label>
+                        <label><input type="radio" name="corso" value="Meccanica"> Meccanica / Meccatronica / Automazione</label>
+                        <label><input type="radio" name="corso" value="Logistica"> Logistica / Trasporti</label>
+                        <label><input type="radio" name="corso" value="CAT"> Edilizia / Geometri (CAT)</label>
+                    </div>
+                </div>
+                <div class="domanda">
+                    <p class="domanda-testo">2. Quanto vorresti spendere al massimo per l'alloggio?</p>
+                    <div class="opzioni-quiz">
+                        <label><input type="radio" name="budget" value="basso" required> Budget Contenuto (Fino a 500€/mese)</label>
+                        <label><input type="radio" name="budget" value="alto"> Budget Standard (Oltre 500€/mese)</label>
+                    </div>
+                </div>
+                <div class="domanda">
+                    <p class="domanda-testo">3. Quale aspetto ritieni fondamentale per l'esperienza estera?</p>
+                    <div class="opzioni-quiz">
+                        <label><input type="radio" name="importance" value="qualita_vita" required> Stile e qualità della vita urbana</label>
+                        <label><input type="radio" name="importance" value="servizi"> Efficienza delle infrastrutture e dei servizi</label>
+                        <label><input type="radio" name="importance" value="sostenibilita"> Attenzione alla sostenibilità e spazi verdi</label>
+                    </div>
+                </div>
+                <button type="submit" class="bottone-blu-confronta" style="width:100%; padding:0.8rem;">Calcola Risultato</button>
+            </form>
+            <div id="risultatoQuiz" class="box-risultato nascosto">
+                <h3>Città Ideale Trovata!</h3>
+                <h2 id="nomeCittaConsigliata"></h2>
+                <p id="spiegazioneRisultato"></p>
+                <button id="bottoneVaiACitta" class="bottone-blu-confronta">Mostra nella Griglia</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="contenitore-principale">
+        <p> Erasmus Hub - Caruso & Ippoliti</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
